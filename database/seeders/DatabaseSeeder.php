@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
 
         $news = json_decode(file_get_contents(__DIR__ . '/seed-data/news.json'), true);
 
-        News::create($news);
+        foreach ($news as $item) {
+            News::create($item);
+        }
     }
 }

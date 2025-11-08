@@ -1,5 +1,7 @@
-{
-  "id": 1,
-  "subject": "Revamped website",
-  "date": "2022-12-26"
-}
+[
+  {
+    "id": 1,
+    "subject": "Revamped website",
+    "date": "2022-12-26"
+  }
+]
