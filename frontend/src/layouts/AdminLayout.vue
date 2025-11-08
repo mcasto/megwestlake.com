@@ -1,33 +1,34 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-toolbar class="bg-brown-4 text-white" dark>
-      <q-btn v-if="Screen.lt.md" icon="menu" flat></q-btn>
-      <q-toolbar-title>
-        Meg Westlake
-      </q-toolbar-title>
-      <q-tabs>
-        <q-route-tab label="Home" :to="{ name: 'home' }"></q-route-tab>
-        <q-route-tab label="About" :to="{ name: 'about' }"></q-route-tab>
-        <q-route-tab
-          label="Race Calendar"
-          :to="{ name: 'race-calendar' }"
-        ></q-route-tab>
-      </q-tabs>
-    </q-toolbar>
+    <q-header>
+      <q-toolbar class="bg-brown-4 text-white" dark>
+        <q-btn v-if="Screen.lt.md" icon="menu" flat></q-btn>
+        <q-toolbar-title>
+          Meg Westlake: Admin
+        </q-toolbar-title>
+        <q-tabs>
+          <q-route-tab label="Home" :to="{ name: 'admin-home' }"></q-route-tab>
+          <q-route-tab label="News" :to="{ name: 'admin-news' }"></q-route-tab>
+          <q-route-tab
+            label="About"
+            :to="{ name: 'admin-about' }"
+          ></q-route-tab>
+          <q-route-tab
+            label="Race Calendar"
+            :to="{ name: 'admin-calendar' }"
+          ></q-route-tab>
+        </q-tabs>
+      </q-toolbar>
+    </q-header>
+
     <q-page-container>
-      <q-page class="bg-brown-2">
+      <q-page class="q-pt-md bg-brown-2">
         <router-view />
       </q-page>
     </q-page-container>
     <q-footer class="bg-brown-4 text-white">
       <div class="flex justify-between items-center">
-        <q-btn
-          icon="settings"
-          flat
-          round
-          size="sm"
-          :to="{ name: 'admin-dashboard' }"
-        ></q-btn>
+        <q-btn icon="home" flat round size="sm" :to="{ name: 'home' }"></q-btn>
         <div>
           Site by
           <a href="https://castoware.com" target="_blank" class="text-blue-10">
@@ -70,5 +71,4 @@
 
 <script setup>
 import { Screen } from "quasar";
-import { ref } from "vue";
 </script>

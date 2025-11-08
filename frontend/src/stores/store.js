@@ -4,18 +4,21 @@ import { ref, computed } from "vue";
 export const useStore = defineStore(
   "store",
   () => {
-    // examples
-    // const state = {
-    //   cuePointer: ref(null),
-    // };
-    // const getters = {
-    //   activeShow: computed(activeShow),
-    // };
-    // const actions = {
-    //   addShow,
-    // };
-
-    const state = {};
+    const state = {
+      about: ref(null),
+      admin: ref({
+        about: null,
+        calendar: null,
+        dashboard: null,
+        home: null,
+        news: null,
+      }),
+      calendar: ref(null),
+      home: ref(null),
+      news: ref(null),
+      token: ref(null),
+      user: ref(null),
+    };
     const getters = {};
     const actions = {};
 

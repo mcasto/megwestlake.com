@@ -5,14 +5,6 @@
       <q-toolbar-title>
         Meg Westlake
       </q-toolbar-title>
-      <q-tabs>
-        <q-route-tab label="Home" :to="{ name: 'home' }"></q-route-tab>
-        <q-route-tab label="About" :to="{ name: 'about' }"></q-route-tab>
-        <q-route-tab
-          label="Race Calendar"
-          :to="{ name: 'race-calendar' }"
-        ></q-route-tab>
-      </q-tabs>
     </q-toolbar>
     <q-page-container>
       <q-page class="bg-brown-2">
@@ -26,7 +18,7 @@
           flat
           round
           size="sm"
-          :to="{ name: 'admin-dashboard' }"
+          :to="{ name: 'admin' }"
         ></q-btn>
         <div>
           Site by
