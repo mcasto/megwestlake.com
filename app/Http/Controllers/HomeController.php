@@ -60,6 +60,6 @@ class HomeController extends Controller
 
         Cache::forget('megwestlake-home');
 
-        return ['updateHome' => $config];
+        return ['status' => 'success', 'message' => 'Home Updated'];
     }
 }

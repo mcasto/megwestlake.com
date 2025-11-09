@@ -95,6 +95,12 @@ const onSubmit = async () => {
     useAuth: true,
   });
 
-  console.log({ response });
+  const type = response.status == "success" ? "positive" : "negative";
+
+  Notify.create({
+    type,
+    position: "center",
+    message: response.message,
+  });
 };
 </script>

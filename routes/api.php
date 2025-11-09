@@ -31,6 +31,7 @@ Route::controller(NewsController::class)
 Route::controller(AboutController::class)
     ->group(function () {
         Route::get('/about-me', 'show');
+        Route::put('/about-me', 'update');
     });
 
 Route::controller(CalendarController::class)
@@ -53,4 +54,5 @@ Route::controller(AdminController::class)
     ->group(function () {
         Route::get('dashboard', 'dashboard');
         Route::post('home/image', 'handleUploadedImage');
+        Route::post('about/image', 'handleUploadedImage');
     });

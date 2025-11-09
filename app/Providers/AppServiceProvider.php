@@ -28,5 +28,18 @@ class AppServiceProvider extends ServiceProvider
         ) {
             return StorageHelper::cleanupOldFiles($disk, $path, $olderThanHours);
         });
+
+        Storage::macro('siteImage', function (
+            string $link = 'public',
+        ) {
+            return StorageHelper::siteImage($link);
+        });
+
+        Storage::macro('setImage', function (
+            string $link = 'public',
+            string $path
+        ) {
+            return StorageHelper::setImage($link, $path);
+        });
     }
 }

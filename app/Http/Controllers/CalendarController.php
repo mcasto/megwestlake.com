@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Calendar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class CalendarController extends Controller
 {
@@ -12,7 +13,7 @@ class CalendarController extends Controller
     {
         return Cache::rememberForever('megwestlake-calendar', function () {
             return [
-                'image' => config('app.images.calendar'),
+                'image' => Storage::siteImage('admin-calendar')->image,
                 'entries' => Calendar::orderBy('date', 'desc')
                     ->get()
             ];

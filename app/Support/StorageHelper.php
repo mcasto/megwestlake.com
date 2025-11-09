@@ -35,4 +35,43 @@ class StorageHelper
 
         return $deletedCount;
     }
+
+    public static function siteImage(string $link)
+    {
+        $config = json_decode(Storage::disk('local')
+            ->get('/app/config.json'));
+
+        $image = collect($config->dashboardImages)
+            ->where('link', $link)
+            ->first();
+
+        return $image;
+        // return collect($config->dashboardImages)->first(fn($item) => $item->link == $link);
+    }
+
+    public static function setImage(string $link, string $path): bool
+    {
+        $configPath = '/app/config.json';
+        $config = json_decode(Storage::disk('local')->get($configPath));
+
+        // Find and update the image for the given link
+        $updated = false;
+        foreach ($config->dashboardImages as $image) {
+            if ($image->link === $link) {
+                $image->image = $path;
+                $updated = true;
+                break;
+            }
+        }
+
+        // Save the updated config back to the file
+        if ($updated) {
+            Storage::disk('local')->put(
+                $configPath,
+                json_encode($config, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+            );
+        }
+
+        return $updated;
+    }
 }

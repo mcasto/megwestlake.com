@@ -79,8 +79,6 @@ const model = defineModel();
 const props = defineProps(["row"]);
 
 const onSubmit = async () => {
-  console.log({ payload: props.row });
-
   const id = props.row.id;
 
   const path = id ? `/news/${id}` : "/news";
