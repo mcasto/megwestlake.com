@@ -70,6 +70,7 @@ const routes = [
         beforeEnter: async () => {
           const store = useStore();
           store.admin.news = await callApi({ path: "/news", method: "get" });
+          console.log({ news: store.admin.news });
         },
       },
       {

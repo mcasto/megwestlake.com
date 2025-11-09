@@ -28,6 +28,4 @@ import { useStore } from "src/stores/store";
 import NewsCard from "src/components/NewsCard.vue";
 
 const store = useStore();
-
-console.log({ news: store.news });
 </script>

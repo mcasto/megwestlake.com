@@ -19,6 +19,13 @@ Route::controller(HomeController::class)
 Route::controller(NewsController::class)
     ->group(function () {
         Route::get('/news', 'index');
+
+        Route::post('/news', 'store')
+            ->middleware('auth:sanctum');
+        Route::put('/news/{id}', 'update')
+            ->middleware('auth:sanctum');
+        Route::delete('/news/{id}', 'destroy')
+            ->middleware('auth:sanctum');
     });
 
 Route::controller(AboutController::class)
