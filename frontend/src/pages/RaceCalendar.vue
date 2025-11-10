@@ -1,10 +1,14 @@
 <template>
   <div class="q-pa-md">
     <div class="row q-gutter-md">
-      <div class="col-12 col-md-6" v-if="Screen.gt.sm">
+      <div class="col-12 col-md-6 text-center" v-if="Screen.gt.sm">
         <q-img :src="store.calendar.image" height="80vh" fit="contain"></q-img>
       </div>
       <div class="col">
+        <q-tabs v-model="calendarType">
+          <q-tab name="upcoming" label="Upcoming"></q-tab>
+          <q-tab name="past" label="Past"></q-tab>
+        </q-tabs>
         <q-table grid :rows="filteredEntries">
           <template #top>
             <div>
@@ -91,27 +95,31 @@ import { format, isWithinInterval, parseISO } from "date-fns";
 
 const store = useStore();
 
+const calendarType = ref("upcoming");
+
 const filter = ref({ type: "name", name: null, dateRange: null });
 
 const filteredEntries = computed(() => {
+  const entries = store.calendar.entries[calendarType.value];
+
   if (!filter.value.name && !filter.value.dateRange) {
-    return store.calendar.entries;
+    return entries;
   }
 
   if (filter.value.type == "name") {
     if (!filter.value.name) {
-      return store.calendar.entries;
+      return entries;
     }
-    return store.calendar.entries.filter(({ name }) =>
+    return entries.filter(({ name }) =>
       name.toLowerCase().includes(filter.value.name.toLowerCase())
     );
   }
 
   if (filter.value.type == "date") {
     if (!filter.value.dateRange) {
-      return store.calendar.entries;
+      return entries;
     }
-    return store.calendar.entries.filter(({ date }) => {
+    return entries.filter(({ date }) => {
       return isWithinInterval(new Date(date), {
         start: filter.value.dateRange.from,
         end: filter.value.dateRange.to,

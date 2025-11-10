@@ -14,8 +14,14 @@ class CalendarController extends Controller
         return Cache::rememberForever('megwestlake-calendar', function () {
             return [
                 'image' => Storage::siteImage('admin-calendar')->image,
-                'entries' => Calendar::orderBy('date', 'desc')
-                    ->get()
+                'entries' => [
+                    'upcoming' => Calendar::where('date', '>', now())
+                        ->orderBy('date', 'desc')
+                        ->get(),
+                    'past' => Calendar::where('date', '<=', now())
+                        ->orderBy('date', 'desc')
+                        ->get()
+                ]
             ];
         });
     }
