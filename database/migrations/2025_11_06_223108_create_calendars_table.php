@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('calendars', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('distance');
+            $table->string('distance')->nullable();
             $table->string('name');
-            $table->text('results');
+            $table->text('results')->nullable();
             $table->timestamps();
         });
     }

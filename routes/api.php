@@ -37,6 +37,12 @@ Route::controller(AboutController::class)
 Route::controller(CalendarController::class)
     ->group(function () {
         Route::get('/calendar', 'index');
+        Route::post('/calendar', 'store')
+            ->middleware('auth:sanctum');
+        Route::put('/calendar/{id}', 'update')
+            ->middleware('auth:sanctum');
+        Route::delete('/calendar/{id}', 'destroy')
+            ->middleware('auth:sanctum');
     });
 
 Route::controller(AuthController::class)
