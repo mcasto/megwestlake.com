@@ -1,6 +1,70 @@
 <template>
   <div>
     <q-table :rows="filteredEntries" :columns="columns">
+      <template #top>
+        <div>
+          <div>
+            <q-radio
+              val="name"
+              label="Event Name"
+              v-model="filter.type"
+            ></q-radio>
+            <q-radio
+              val="date"
+              label="Date Range"
+              v-model="filter.type"
+            ></q-radio>
+          </div>
+          <div v-if="filter.type == 'name'">
+            <q-input
+              type="text"
+              label="Event Name"
+              v-model="filter.name"
+              dense
+              outlined
+              clearable
+              debounce="300"
+              @keydown.esc="filter.name = null"
+            ></q-input>
+          </div>
+          <div v-else>
+            <div class="flex items-center">
+              <div>
+                <q-btn
+                  icon="mdi-calendar-month"
+                  label="Specify Date Range"
+                  color="primary"
+                >
+                  <q-menu>
+                    <q-date v-model="filter.dateRange" range>
+                      <div class="row items-center justify-end">
+                        <q-btn
+                          v-close-popup
+                          label="Close"
+                          color="primary"
+                          flat
+                        />
+                      </div>
+                    </q-date>
+                  </q-menu>
+                </q-btn>
+              </div>
+
+              <div class="q-ml-xl" v-if="filter.dateRange">
+                {{ format(new Date(filter.dateRange.from), "PP") }} -
+                {{ format(new Date(filter.dateRange.to), "PP") }}
+                <q-btn
+                  icon="mdi-close-circle"
+                  flat
+                  round
+                  color="grey-7"
+                  @click="filter.dateRange = null"
+                ></q-btn>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
       <template #header-cell-tools>
         <q-th class="text-right">
           <q-btn
@@ -45,7 +109,7 @@ import { clone, remove } from "lodash-es";
 import { useStore } from "src/stores/store";
 import { computed, ref } from "vue";
 import CalendarDialog from "src/components/CalendarDialog.vue";
-import { formatISO9075 } from "date-fns";
+import { formatISO9075, isWithinInterval, format } from "date-fns";
 import callApi from "src/assets/call-api";
 import { Notify } from "quasar";
 
