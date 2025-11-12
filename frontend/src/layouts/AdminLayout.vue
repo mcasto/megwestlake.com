@@ -17,7 +17,18 @@
             label="Race Calendar"
             :to="{ name: 'admin-calendar' }"
           ></q-route-tab>
+          <q-route-tab
+            label="Users"
+            :to="{ name: 'admin-users' }"
+          ></q-route-tab>
         </q-tabs>
+        <q-btn
+          icon="logout"
+          round
+          flat
+          class="q-ml-md"
+          @click="onLogout"
+        ></q-btn>
       </q-toolbar>
     </q-header>
 
@@ -26,6 +37,7 @@
         <router-view />
       </q-page>
     </q-page-container>
+
     <q-footer class="bg-brown-4 text-white">
       <div class="flex justify-between items-center">
         <q-btn icon="home" flat round size="sm" :to="{ name: 'home' }"></q-btn>
@@ -71,4 +83,13 @@
 
 <script setup>
 import { Screen } from "quasar";
+import { useStore } from "src/stores/store";
+
+const store = useStore();
+
+const onLogout = () => {
+  store.user = null;
+  store.token = null;
+  store.router.push("/sign-in");
+};
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="row q-gutter-md">
-    <div class="col" v-for="item of store.admin.dashboard" :key="item.link">
+    <div class="col-3" v-for="item of store.admin.dashboard" :key="item.link">
       <router-link :to="{ name: item.link }">
         <q-card class="bg-transparent" flat>
           <q-img :src="item.image" height="30vh" fit="contain"></q-img>

@@ -12,6 +12,7 @@ export const useStore = defineStore(
         dashboard: null,
         home: null,
         news: null,
+        users: null,
       }),
       calendar: ref(null),
       home: ref(null),

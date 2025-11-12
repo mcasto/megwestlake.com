@@ -97,6 +97,19 @@ const routes = [
         },
         name: "admin-calendar",
       },
+      {
+        path: "users",
+        component: () => import("pages/admin/AdminUsers.vue"),
+        name: "admin-users",
+        beforeEnter: async () => {
+          const store = useStore();
+          store.admin.users = await callApi({
+            path: "/users",
+            method: "get",
+            useAuth: true,
+          });
+        },
+      },
     ],
   },
   {
