@@ -5,11 +5,17 @@
         <q-img :src="store.calendar.image" height="80vh" fit="contain"></q-img>
       </div>
       <div class="col">
-        <q-tabs v-model="calendarType">
+        <q-tabs v-model="calendarType" align="left">
           <q-tab name="upcoming" label="Upcoming"></q-tab>
           <q-tab name="past" label="Past"></q-tab>
         </q-tabs>
-        <q-table grid :rows="filteredEntries">
+        <q-table
+          grid
+          :rows="filteredEntries"
+          :no-data-label="
+            calendarType == 'upcoming' ? 'No Upcoming Events' : 'No Past Events'
+          "
+        >
           <template #top>
             <div>
               <div>
