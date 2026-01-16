@@ -27,7 +27,7 @@ export const useStore = defineStore(
   },
   {
     persist: {
-      key: "default-key",
+      key: "meg-westlake",
     },
   }
 );
