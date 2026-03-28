@@ -16,10 +16,10 @@ class CalendarController extends Controller
             return [
                 'image' => Storage::siteImage('admin-calendar')->image,
                 'entries' => [
-                    'upcoming' => Calendar::where('date', '>', now())
+                    'upcoming' => Calendar::where('date', '>=', today())
                         ->orderBy('date', 'asc')
                         ->get(),
-                    'past' => Calendar::where('date', '<=', now())
+                    'past' => Calendar::where('date', '<', today())
                         ->orderBy('date', 'desc')
                         ->get()
                 ]

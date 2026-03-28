@@ -117,7 +117,7 @@ const filteredEntries = computed(() => {
       return entries;
     }
     return entries.filter(({ name }) =>
-      name.toLowerCase().includes(filter.value.name.toLowerCase())
+      name.toLowerCase().includes(filter.value.name.toLowerCase()),
     );
   }
 
